@@ -1,12 +1,13 @@
 # Fdb version 3
-["bibtex ADBIS"] 1559912904 "ADBIS.aux" "ADBIS.bbl" "ADBIS" 1559912905
+["bibtex ADBIS"] 1559914844 "ADBIS.aux" "ADBIS.bbl" "ADBIS" 1559914845
   "./splncs04.bst" 1559056294 33695 28665749a115a456b34a9d485a808ee2 ""
-  "ADBIS.aux" 1559912905 6608 fcbf8840b8361cc64eb4e4d1aa76355f ""
+  "ADBIS.aux" 1559914844 6558 240b8a03fb6cff8aaf06328d9d85fb34 ""
   "ADBIS.bcf" 0 -1 0 ""
   "bibliography.bib" 1559055954 6772 fc786be14f890d5d705e3cef6b12dede ""
   (generated)
   "ADBIS.bbl"
-["pdflatex"] 1559912904 "ADBIS.tex" "ADBIS.pdf" "ADBIS" 1559912905
+  "ADBIS.blg"
+["pdflatex"] 1559914844 "ADBIS.tex" "ADBIS.pdf" "ADBIS" 1559914845
   "./05_schema/context1.pdf" 1553856309 21686 4a18cce0061b818fb091ebb08cd14da6 ""
   "./05_schema/dataset.pdf" 1517588937 32425 1b5468d2e2d738d44c20fbf24b48004f ""
   "./05_schema/eval_internal.pdf" 1558956513 53049 07f29eab9181ca114fdaa4e3889b3085 ""
@@ -84,7 +85,6 @@
   "/usr/local/texlive/2015/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty" 1357515851 138649 9b25c6203fed00aa0591833fc72e9128 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/article.cls" 1428932888 20708 96f8bca6e380179cada1d49716376167 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty" 1428932888 5159 bb529586d444e85eb00179221b678119 ""
-  "/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd" 1428932888 2256 09a793cb810c26c97ed035dcd724a0d0 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo" 1428932888 9179 632e23fed01c842f2eaef1dd9953a446 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/booktabs/booktabs.sty" 1211777752 6375 989ecfb545a13610facc71ae7e40ced1 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/carlisle/remreset.sty" 1137109962 1096 6a75275ca00e32428c6f059d2f618ea7 ""
@@ -126,11 +126,11 @@
   "05_schema/results_real_dataset.pdf" 1559052114 38493 8577a0afa376edd64eff378c61079bb5 ""
   "05_schema/settings2.pdf" 1558957228 29322 0cecda012b5e19d93cdb4aa4da9c4160 ""
   "05_schema/time.pdf" 1559051287 22004 793bd4fe342b139d6f48b5f614474041 ""
-  "ADBIS.aux" 1559912905 6608 fcbf8840b8361cc64eb4e4d1aa76355f ""
-  "ADBIS.bbl" 1559912904 4670 21d78d61795f1292d0bf56a412c6fbca "bibtex ADBIS"
-  "ADBIS.tex" 1559115279 44292 a05e08a6bb4333c758b6aa1c12021835 ""
+  "ADBIS.aux" 1559914844 6558 240b8a03fb6cff8aaf06328d9d85fb34 ""
+  "ADBIS.bbl" 1559914844 4670 21d78d61795f1292d0bf56a412c6fbca "bibtex ADBIS"
+  "ADBIS.tex" 1559914843 43770 6ed5a2a7251da52f39de6c36b23e2c9f ""
   "llncs.cls" 1521108100 43467 a21466011e5ed5d4c3f1d5a9af897395 ""
   (generated)
-  "ADBIS.log"
   "ADBIS.aux"
+  "ADBIS.log"
   "ADBIS.pdf"

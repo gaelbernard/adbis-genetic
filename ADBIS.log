@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  7 JUN 2019 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.30)  7 JUN 2019 15:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -402,38 +402,24 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 41.
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no “ in font cmr10!
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no “ in font cmr10!
 
-[1
-
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<05_schema/intro2.pdf, id=13, 1321.93875pt x 303.1325pt>
+<05_schema/intro2.pdf, id=1, 1321.93875pt x 303.1325pt>
 File: 05_schema/intro2.pdf Graphic file (type pdf)
 
 <use 05_schema/intro2.pdf>
 Package pdftex.def Info: 05_schema/intro2.pdf used on input line 55.
 (pdftex.def)             Requested size: 347.12354pt x 79.5989pt.
+ [1
 
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 <05_schema/context1.pdf, id=14, 1065.9825pt x 199.74625pt>
 File: 05_schema/context1.pdf Graphic file (type pdf)
 
 <use 05_schema/context1.pdf>
 Package pdftex.def Info: 05_schema/context1.pdf used on input line 65.
 (pdftex.def)             Requested size: 347.12354pt x 65.04477pt.
- [2 <./05_schema/intro2.pdf> <./05_schema/context1.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 82.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
- [3]
-[4] <05_schema/process.pdf, id=75, 706.64pt x 128.48pt>
+ [2 <./05_schema/intro2.pdf> <./05_schema/context1.pdf>] [3] [4] <05_schema/pro
+cess.pdf, id=75, 706.64pt x 128.48pt>
 File: 05_schema/process.pdf Graphic file (type pdf)
 
 <use 05_schema/process.pdf>
@@ -446,11 +432,13 @@ File: 05_schema/intuition2.pdf Graphic file (type pdf)
 <use 05_schema/intuition2.pdf>
 Package pdftex.def Info: 05_schema/intuition2.pdf used on input line 116.
 (pdftex.def)             Requested size: 242.98541pt x 124.19185pt.
- [5 <./05_schema/process.pdf>] [6 <./05_schema/intuition2.pdf>]
+ [5 <./05_schema/process.pdf>]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 139.
 
+[6 <./05_schema/intuition2.pdf>]
 LaTeX Font Info:    Calculating math sizes for size <> on input line 144.
+
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
 (Font)              size <5> substituted on input line 144.
@@ -637,18 +625,19 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
  )
-(\end occurred inside a group at level 1)
+(\end occurred inside a group at level 2)
 
-### simple group (level 1) entered at line 211 ({)
+### simple group (level 2) entered at line 211 ({)
+### simple group (level 1) entered at line 80 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4406 strings out of 493089
- 60196 string characters out of 6134842
+ 4388 strings out of 493089
+ 59873 string characters out of 6134842
  158966 words of memory out of 5000000
- 7800 multiletter control sequences out of 15000+600000
+ 7785 multiletter control sequences out of 15000+600000
  13246 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,13n,35p,1820b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,13n,35p,1820b,405s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
@@ -673,7 +662,7 @@ ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive
 5/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ADBIS.pdf (16 pages, 791316 bytes).
+Output written on ADBIS.pdf (16 pages, 790454 bytes).
 PDF statistics:
  435 PDF objects out of 1000 (max. 8388607)
  318 compressed objects within 4 object streams
