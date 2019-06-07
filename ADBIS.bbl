@@ -46,12 +46,6 @@ Gabadinho, A., Ritschard, G., Studer, M., M{\"u}ller, N.S.: Extracting and
   Knowledge Discovery, Knowledge Engineering, and Knowledge Management. pp.
   94--106. Springer (2009)
 
-\bibitem{Gartner2015}
-Olding, E., Cantara, M., Robertson, B., Dunie, R., Huang, O., Searle, S.:
-  Predicts 2016: Business transformation and process management bridge the
-  strategy-toexecution gap. Tech. rep., Gartner (November 2015),
-  \url{https://www.gartner.com/doc/3173020/predicts--business-transformation-process}
-
 \bibitem{bernard2017cjmEX}
 Bernard, G., Andritsos, P.: Cjm-ex: Goal-oriented exploration of customer
   journey maps using event logs and data analytics. In: 15th International
@@ -61,27 +55,28 @@ Bernard, G., Andritsos, P.: Cjm-ex: Goal-oriented exploration of customer
 Harbich, M., Bernard, G., Berkes, P., Garbinato, B., Andritsos, P.: Discovering
   customer journey maps using a mixture of markov models  (2017/12)
 
-\bibitem{levenshtein1966binary}
-Levenshtein, V.I.: Binary codes capable of correcting deletions, insertions,
-  and reversals. In: Soviet physics doklady. vol.~10, pp. 707--710 (1966)
-
-\bibitem{schwarz1978estimating}
-Schwarz, G., et~al.: Estimating the dimension of a model. The annals of
-  statistics  \textbf{6}(2),  461--464 (1978)
-
-\bibitem{calinski1974dendrite}
-Cali{\'n}ski, T., Harabasz, J.: A dendrite method for cluster analysis.
-  Communications in Statistics-theory and Methods  \textbf{3}(1),  1--27 (1974)
-
 \bibitem{buijs2012genetic}
 Buijs, J.C., van Dongen, B.F., van~der Aalst, W.M.: A genetic algorithm for
   discovering process trees. In: Evolutionary Computation (CEC), 2012 IEEE
   Congress on. pp.~1--8. IEEE (2012)
 
+\bibitem{vazquez2015prodigen}
+V{\'a}zquez-Barreiros, B., Mucientes, M., Lama, M.: Prodigen: Mining complete,
+  precise and minimal structure process models with a genetic algorithm.
+  Information Sciences  \textbf{294},  315--333 (2015)
+
 \bibitem{de2005genetic}
 De~Medeiros, A.A., Weijters, A.: Genetic process mining. In: Applications and
   Theory of Petri Nets 2005, Volume 3536 of Lecture Notes in Computer Science.
   Citeseer (2005)
+
+\bibitem{levenshtein1966binary}
+Levenshtein, V.I.: Binary codes capable of correcting deletions, insertions,
+  and reversals. In: Soviet physics doklady. vol.~10, pp. 707--710 (1966)
+
+\bibitem{calinski1974dendrite}
+Cali{\'n}ski, T., Harabasz, J.: A dendrite method for cluster analysis.
+  Communications in Statistics-theory and Methods  \textbf{3}(1),  1--27 (1974)
 
 \bibitem{gabadinho2013searching}
 Gabadinho, A., Ritschard, G.: Searching for typical life trajectories applied

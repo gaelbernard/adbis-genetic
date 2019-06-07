@@ -90,26 +90,22 @@ The goal of a customer journey discovery algorithm is to find a reasonable amoun
 {\it The customer journey discovery activity can be defined as a function that maps all members of $J_{\mathcal{A}}$ to a member of $J_{\mathcal{R}}$;} i.e., that maps all the actual journeys to representative journeys ultimately displayed on a CJM. Discovering customer journeys from event logs can be seen as an unsupervised clustering task. This task has interesting challenges. First, choosing the number of representatives is difficult. When the goal is to have a general overview about dataset, it seems reasonable to display only few journeys so the CJM is readable. However, discovering few dozens representative journeys might also be a relevant choice if the goal is to catch complex and less generic patterns. Finally, the sequence that best summarizes its assigned actual journeys needs to be found. It might be the case that an ideal representative journey was never observed but well summarizes the actual journeys. This phenomena was observed by Gabadinho et al., and illustrated as follows: ``We could imagine synthetic -- not observed -- typical sequences, in the same way as the mean of a series of numbers that is generally not an observable individual value.'' \cite{gabadinho2009extracting}. Before presenting our solution, the next section describes related work.
 
 \section{Related Work}
-There are works in social sciences that are relevant to summarize customer journeys. Typically, in \cite{gabadinho2009summarizing,gabadinho2009extracting}, Gabadinho et al. are summarizing observed sequences with representatives. They define a representative as {\it``a set of non-redundant `typical' sequences that largely, though not necessarily exhaustively, cover the spectrum of observed sequences''} \cite{gabadinho2009summarizing}. We argue that it matches our definition of a representative sequence summarizing a set of sequences. The authors propose multiple ways to select a representative. The {\it `frequency'} (1), where the most frequent event is used as the representative. The {\it `neighborhood density'} (2), which consider the representative as the sequence with the most neighborhood in a defined diameter. The {\it `centrality'} (3): the representative {-- or medoid --} can be found using the centrality. {Being the most central object,} the representative is the sequence with the minimal sum of distances to all other sequences. Finally, the {\it `sequence likelihood'} (4): the sequence likelihood of a sequence derived from the first-order Markov model can also be used to find the representative. 
+There are works in social sciences that are relevant to summarize customer journeys. Typically, in \cite{gabadinho2009summarizing,gabadinho2009extracting}, Gabadinho et al. are summarizing observed sequences with representatives. They define a representative as {\it``a set of non-redundant `typical' sequences that largely, though not necessarily exhaustively, cover the spectrum of observed sequences''} \cite{gabadinho2009summarizing}. The authors propose four ways to choose a representative. The {\it `frequency'} consider the most frequent sequence as the representative. The {\it `neighborhood density'}, (2), selects the sequence that has the most neighborhoods in a defined diameter. The {\it `centrality'}, (3), pick the most central object, i.e., the one having the minimal sum of distances. Finally, the {\it `sequence likelihood'} considers a sequence derived from the first-order Markov model. 
 
-Because it starts from data in order to produce conceptual models, process mining is another discipline closely related to the topic of customer journey discovery. The link between customer journey maps and process mining was highlighted in \cite{bernard2017cjm}. However, business process models and CJMs are not built for the same purpose. While a business process model captures how a process was or should be orchestrated, a CJM is built for the purpose of better understanding what customers have experienced. Gartner highlighted that CJMs are used to supplement but not to replace BPMs \cite{Gartner2015}.
+Because it starts from data in order to produce conceptual models, process mining is another discipline closely related to the topic of customer journey discovery. The link between customer journey maps and process mining was highlighted in \cite{bernard2017cjm}. However, business process models and CJMs are not built for the same purpose. While a business process model captures how a process was or should be orchestrated, a CJM is built for the purpose of better understanding what customers have experienced. 
 
-In \cite{bernard2017cjmEX}, we propose CJM-ex, a web-based tool to navigate CJMs. It uses a hierarchical structure that allows drilling-down in customer journeys. In \cite{bernard2017Markov}, it was shown that customer journey maps can be discovered using Markov model. In \cite{bernard2019genetic}, we suggested a genetic approach to discover representative journeys that uses only the sequence of touchpoints to measure the distance between journeys. Hence, this current work can be seen as an extension of \cite{bernard2019genetic} to allow taking both the sequence of touchpoints and the contextual information into account when build CJMs. 
+In \cite{bernard2017cjmEX}, we propose CJM-ex, an online tool to explore CJMs. Because it uses a hierarchical structure, it allows to efficiently naviguate in CJMs. In \cite{bernard2017Markov}, it was shown that customer journey maps can be discovered using Markov model. In \cite{bernard2019genetic}, we suggested a genetic approach to discover representative journeys that uses only the sequence of touchpoints to measure the distance between journeys. Hence, this current work can be seen as an extension of \cite{bernard2019genetic} to allow taking both the sequence of touchpoints and the contextual information into account when build CJMs. 
 
 
 \section{Genetic Algorithm for CJM Discovery}
-
-%{Our work is inspired by the genetic approaches proposed in} \cite{buijs2012genetic,vazquez2015prodigen,de2005genetic} {to discover business process models from event logs. However, we tailored it towards CJMs by introducing specific evaluation metrics suited for them.} Fig.~\ref{fig:process} depicts the main phases: (1) a preprocessing phase, (2) generating the initial population, (3) assigning each actual journey to its closest representative, (4) evaluating the quality of the CJMs, (5) the stopping criterion evaluation, and (6) creating new CJMs by applying some genetic operations.
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\columnwidth]{05_schema/process.pdf}
-  \caption{Overview of the genetic algorithm to discover CJMs}
+  \caption{Genetic approach}
   \label{fig:process}
 \end{figure}
 
-
-As an introduction, Fig.~\ref{fig:process} provides intuition on how the genetic algorithm builds a CJM. A set of actual journeys, $J_{a}$, is provided to the algorithm. Then, during  {\it Generation 1}, we build $p$ number of $J_{\mathcal{R}}$, where {\it $p$ is the population size}; i.e., the number of CJMs that will be evaluated after each generation. In Fig.~\ref{fig:intuition2}, $p$ is 3. Each $J_{\mathcal{R}}$ is evaluated and we keep the $e$ best $J_{\mathcal{R}}$s, called the {\it elite set} while we discard the other ($p-e$) $J_{\mathcal{R}}$s. Then, we move to {\it Generation 2}, where we keep an untouched version of the $e$ number of $J_{\mathcal{R}}$s in the elite set. In Fig.~\ref{fig:intuition2}, $e$ is set to 1. For instance, $J_{\mathcal{R}2}$ was kept in Generation 2 because it has the best average quality in Generation 1, i.e., $J_{\mathcal{R}2}$ is intact in Generation 2. We then apply some transformation (to be discussed next) to generate ($p-e$) new $J_{\mathcal{R}}$s that will, in turn, be evaluated. In our case, we generate $J_{\mathcal{R}4}$ and $J_{\mathcal{R}5}$. We recursively transform and evaluate the $p$ number of $J_{\mathcal{R}}$s until a stopping criterion is met. Once a stopping criterion is met, we return the best $J_{\mathcal{R}}$ ($J_{\mathcal{R}7}$ in Fig.~\ref{fig:intuition2}). { \it The best $J_{\mathcal{R}}$ can be interpreted as the best set of representative journeys, $J_r$, representing a set of journeys from $J_{\mathcal{A}}$ that have been found given a certain evaluation criterion.} The next section describes how we generate the initial population, what various types of operations we apply on each $J_{\mathcal{R}}$ to transform them, and how we evaluate each one of them given a set of journeys in $J_{\mathcal{A}}$. 
+Our work is inspired by the genetic approaches proposed in \cite{buijs2012genetic,vazquez2015prodigen,de2005genetic} {to discover business process models from event logs. However, we tailored it towards CJMs by introducing specific evaluation metrics suited for them. Fig.~\ref{fig:process} depicts the main phases: (1) a preprocessing phase, (2) generating the initial population, (3) assigning each actual journey to its closest representative, (4) evaluating the quality of the CJMs, (5) the stopping criterion evaluation, and (6) creating new CJMs by applying some genetic operations. We introduce these phases in details while the Fig. \ref{fig:intuition2} illustrates how it works. 
 
 \begin{figure}
 \centering
@@ -119,24 +115,22 @@ As an introduction, Fig.~\ref{fig:process} provides intuition on how the genetic
 \end{figure}
 
 \subsection{Preprocessing} \label{preprocessing}
-To gain in efficiency, we make the assumption that $J_{\mathcal{R}}$ will be close to the frequent patterns observed in $J_{a}$. Let $Top_{\ell_n}$ be the $n$ most occurring patterns of length $\ell$ and $Top_n \supseteq Top_{\ell_{[2,m]}}$ be the superset of all the most occurring patterns of lengths $2$ to $m$.  $Top_n$ is used later to form the initial population of $J_{\mathcal{R}}$ (described in Section \ref{chap:initial-population}), and to add a random journey to $J_{\mathcal{R}}$. Using $Top_n$ we avoid generating journeys by picking a random number of touchpoints from $T$. According to our experiments, using $Top_n$ reduces the execution time by two to get an output $J_{\mathcal{R}}$ of the same average quality.
+We assume that the representative journeys will be similar to the most frequent patterns journeys. Hence, to reduce computation time, we extract the most frequent patterns that we use to create new journeys and to generate the initial population. Let $Top_{\ell_n}$ be the $n$ most occurring patterns of length $\ell$ and $Top_n \supseteq Top_{\ell_{[2,m]}}$ be the list of all the most occurring patterns of lengths $2$ to $m$. By using $Top_n$, we reduce the execution time by two without impairing the quality of the final output.
 
 \subsection{Initial Population}
 \label{chap:initial-population}
-The initial population is generated by adding a sequence randomly picked from $Top_n$ {(defined in Sect. \ref{preprocessing})}. In our running example, depicted in Fig.~\ref{fig:intuition2}, the initial population is visible in column `generation 1'. In Fig.~\ref{fig:intuition2}, the population size is 3. In our experiments, we set the population size to 100. 
+We start by generating a set of random CJMs. There are created by picking journeys from from $Top_n$. In our running example, depicted in Fig.~\ref{fig:intuition2}, the initial population is visible in column `generation 1'. In Fig.~\ref{fig:intuition2}, the population size is 3. In our experiments, we set the population size to 100. 
 
 \subsection{Assign Actual Journeys}
-The quality of a representative journey can only be measured when knowing which actual journeys it represents. Hence, a first step toward evaluating the quality of $J_{\mathcal{R}}$ is to assign each journey $J_a \in J_{\mathcal{A}}$ to its closest journey in $J_r \in J_{\mathcal{R}}$. To characterize the closeness between $J_a$ and $J_r$, we use the Levenshtein distance borrowed from \cite{levenshtein1966binary}. It is a metric particularly well-suited to measure the distance between sequences. The Levenshtein distance counts the number of edit operations that are necessary to transform one sequence into another one. There are three types of operations: deletions, insertions, and substitutions. For instance, the distance between {$\langle \textsc{abc} \rangle$} and {$\langle \textsc{acce} \rangle$} is 2 since one substitution and one insertion are required to match them. We define the closest representative as the one having the smallest Levenshtein distance with the actual journeys. Note that if a tie occurs between multiple best representatives, we assign the $J_a$ to the $J_r$ having the smallest amount of actual journeys already assigned to it. Once each actual journey has been assigned to its closest representative, we can evaluate $J_{\mathcal{R}}$ using the criteria described in the next section. 
+In order to evaluate the quality of the generated CJMs, it is required to assign each actual journey to its closest representative. The closeness between $J_a$ and $J_r$ is measured using the Levenshtein distance \cite{levenshtein1966binary}. This metric counts the number of edit operations (i.e., deletions, insertions, and substitutions) required to match two sequences. Typically, the distance between {$\langle \textsc{xyz} \rangle$} and {$\langle \textsc{xyyw} \rangle$} is 2. The closest representative is the one having the smallest Levenshtein distance with the actual journeys. If a tie occurs, we assign the actual journey to the representative having the less journeys already assigned to it. When the actual journeys have been assigned to their respective closest representative, we can start evaluating the quality of the CJMs. 
  
-
 \subsection{CJM Evaluation Criteria}
 \label{chapter:cjm-evaluation-criteria}
 
-This section introduces the evaluation criteria used to determine the quality of each $J_{\mathcal{R}}$, namely, (1) the fitness, (2) the number of representatives, (3) the contextual distance, and (4) the average quality.  
+We define four criteria to evaluate the quality of CJMs: (1) the fitness, (2) the number of representatives, (3) the contextual distance, and (4) the average quality.  
 
-\subsubsection{Fitness.} The fitness measures the distance between each sequence of activities $J_{a}$ and its closest representative $J_{\mathcal{R}}$ using the Levenshtein distance \cite{levenshtein1966binary}. 
+\subsubsection{Fitness.} Using the Levenshtein distance \cite{levenshtein1966binary}, the fitness quality measures the distance between the representative sequence and the actual journeys assigned to it. 
 \begin{equation}
-\footnotesize
     Fitness(J_{a}, J_{\mathcal{R}}) =  
     1-\frac
       {\sum_{i=1}^{|J_{a}|}min_{j=1}^{|J_{\mathcal{R}}|}({Levenshtein(\mathbf{\sigma_{\mathcal{A}_i}}}; \mathbf{\sigma_{\mathcal{R}_j}}))}
@@ -144,41 +138,38 @@ This section introduces the evaluation criteria used to determine the quality of
 \end{equation}
 where 
 \begin{conditions*}
- \mathbf{\sigma_{\mathcal{A}_i}} &  i\textsuperscript{th} actual sequence  observed in event logs \\
+ \mathbf{\sigma_{\mathcal{A}_i}} &  i\textsuperscript{th} actual (observed) sequence in $J_{\mathcal{A}}$ \\
  \mathbf{\sigma_{\mathcal{R}_j}} &  j\textsuperscript{th} representative contained in $J_{\mathcal{R}}$ \\
- Length(x)  &  Length of the sequence of activity $x$
+ Length(x)  &  Number of touchpoints in the sequence $x$
 \end{conditions*} 
 
-A fitness of 1 means that the representative journey perfectly catches the behavior of the actual journeys assigned to it. In contrast, a fitness close to 0 implies that many edit operations are necessary to match the sequences.
+When an actual journey is strictly identical to its representative journey, the fitness is 1.
 
-\subsubsection{Number of Representatives.} An event log can contain several hundreds or thousands of unique actual journeys. Hence, we maximize the fitness without trying to keep a low $k_{\mathcal{R}}$, the CJM will become unreadable because too many representative journeys will be displayed in it. In other words, $J_{\mathcal{R}}$ overfits. Hence, the goal is to find a $k_{\mathcal{R}}$ that offers a good compromise between underfitting and overfitting. Finding the optimal number of clusters is a recurrent challenge when clustering data. We propose integrating traditional ways of determining the optimal number of clusters, such as the Bayesian information criterion \cite{schwarz1978estimating},  or the Calinski-Harabasz index \cite{calinski1974dendrite}. The idea is to evaluate a range of solutions (e.g., from 2 to 10 journeys) and to keep the best solution. Let $k_{h}$ be the optimal number of clusters returned by one of the techniques mentioned above. By integrating $k_{h}$ into the evaluation, we can guide the solution toward a $k_{\mathcal{R}}$ that is statistically relevant. To evaluate the quality, we measure the distance between $k_{\mathcal{R}}$ and $k_{h}$. To do this, we propose the following distribution function:
+\subsubsection{Number of Representatives.} The more representative journeys we use, the more likely the fitness will be high. Hence, without a metric that helps keeping a low number of representatives, we would obtain a final CJM with several thousands representative journeys. Therefore, the goal of the metric is to keep a low number of representatives. To guide the algorithm towards an `ideal' number of representatives, we borrowed a clustering technique that helps in choosing the number of clusters. More specifically, we used the Calinski-Harabasz index \cite{calinski1974dendrite}. Let $k_{h}$ be the optimal number of clusters returned by the Calinski-Harabasz index. To evaluate the quality, we measure the distance between $k_{\mathcal{R}}$ and $k_{h}$ using the following distribution function: 
 
 \begin{equation}
-\footnotesize
     Number Of Representatives({k_{\mathcal{R}}}, {k_{h}}, {x_0}) = \frac{1}{1 + (\frac{|k_{\mathcal{R}}-k_{h}|}{x_0})^{2} } 
 \end{equation}
 
 where 
 \begin{conditions*}
  $${k_{\mathcal{R}}}$$  &  Number of $J_r$ journeys on $J_{\mathcal{R}}$ (i.e., $|J_{\mathcal{R}}|$)\\
- $${k_{h}}$$  &  Optimal number of journeys (e.g., using the Calinski-Harabasz index)\\
+ $${k_{h}}$$  &  ideal number of journeys according to the Calinski-Harabasz index\\
  $${x_0}$$  &  x value of the midpoint \\
 \end{conditions*} 
 
-The parameter $x_0$ determines where the midpoint of the curve is. Concretely, if $x_0=5$, $k_{\mathcal{R}}=11$ will result in a quality of 0.5 because the absolute distance from $k_{h}$ is 5. We set $x_{0}=5$ for all our experiments. Because the number of representatives is not the only criteria to assess the quality of a CJM, the final CJM might contain more or less journeys if it increases the average quality.
+We set the value of the midpoint, x_{0}, to 5 for all our experiments. The intuition behind this parameter is the following. If we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are others evaluation criteria.
 
-%to be improved !
 \label{contextual-distance}
 \subsubsection{Contextual Distance.} The contextual distance allows us to consider the set of contextual data $C$ when grouping similar journeys. The more distant the set of contextual data is between $J_a$ that are represented by distinct $J_r$, the better the quality is. To measure the distance, we first build a value frequency table which count all the values per representatives (${v_i}$ is the value frequency counter for $J_{r_i})$. Then, for each pair of clusters, we calculate the cosine similarity, which is defined as:
 
 \begin{equation}
-\footnotesize
     ContextualDistance({v_{1}}, {v_{2}}) = \frac{v_{1} \cdot v_{2}}{||v_{1} ||\cdot||v_{2}||} 
 \end{equation}
 
 Finally, the cosine distances are averaged to get the overall contextual distance. A short overall distance indicates that the contextual data of $J_a$ that are assigned to distinct $J_r$ are similar. In other words, the contextual data does not help in classifying $J_a$ between several $J_r$. 
 
-\subsubsection{Average Quality. } We assign weights to the fitness, the number of representatives, and the contextual distances qualities to adjust their relative importance. Then, we get the overall quality by averaging the weighted qualities using the arithmetic mean. 
+\subsubsection{Average Quality. } We get the average weighted quality by getting the arithmetic mean of: (1) the fitness, (2) the number of representatives, and (3) the contextual-distance. 
 
 \subsection{Stopping Criterion}
 {Once we assess the quality of generated CJMs, we check if a stopping criterion is met.} There are three ways we can use to stop the algorithm taken from \cite{buijs2012genetic,de2005genetic}. (1) The algorithm could stop after a certain number of generations. (2) One could stop the algorithm when a certain number of generations have been created without improving the average quality. (3) We could stop the algorithm when a certain quality threshold is reached for one of the evaluation criteria. Because it is difficult to predict the quality level that can be reached, we believe that stopping the algorithm using a threshold is not advisable. For this reason, we used a combination of approaches 1 and 2 for our experiments. Once the stopping criteria have been evaluated, there are two outcomes. Either one of the criteria is met and the algorithm stops, returning the best $J_{\mathcal{R}}$, or, {we generate new candidates} by recursively calling a function that generates the next population, described in the next section.
@@ -216,19 +207,16 @@ To evaluate and compare the quality of representative journeys, we use both exte
 
 \subsubsection{External Evaluation - Distance in Number of Journeys.} This metric measures the distance between the number of generative journeys and the number of representative journeys returned by the algorithm. We propose the following metric:
 \begin{equation}
-\footnotesize
     NbJourneysDistance({k_{\mathcal{G}}}, {k_{\mathcal{R}}}) = abs({k_{\mathcal{G}}} - {k_{\mathcal{R}}}) 
 \end{equation}
 
 \subsubsection{External Evaluation - Jaccard Distance.} To evaluate the distance between the sequences of activities from the generative journeys ($\sigma_{\mathcal{G}}$) and the discovered representative journeys ($\sigma_{\mathcal{R}}$), we propose to use the Jaccard Distance where a score of 1 indicates a perfect match between the set of sequences from the generative journeys and the representative ones. 
 \begin{equation}
-\footnotesize
     JaccardDistance(\mathbf{\sigma_{\mathcal{R}}}, \sigma_{\mathcal{G}}) = 1 - \frac{|\mathbf{\sigma_{\mathcal{R}} \cap \sigma_{\mathcal{G}}}|}{|\mathbf{\sigma_{\mathcal{R}} \cup \sigma_{\mathcal{G}}}|}
 \end{equation}
 
 \subsubsection{Internal Evaluation - Mean distance \cite{gabadinho2009extracting}.} The mean distance $i$ returns the average distance between the representative sequence $i$ and the sequence of actual journeys that have been assigned to $i$. If the mean distance $i$ is 0, then the representative journey $i$ perfectly matches the underlying actual journeys.   
 \begin{equation}
-\footnotesize
     MeanDistanceScore_i = \frac{\sum^{k_i}_{j=1}{D(S_{i}}, S_{ij})}{k_i}
 \end{equation}
 where 
@@ -241,7 +229,6 @@ where
 
 \subsubsection{Internal Evaluation - Coverage \cite{gabadinho2009extracting}.} The coverage indicates the proportion of actual journeys that are within the neighborhood $n$ of a representative.   
 \begin{equation}
-\footnotesize
     Coverage_i = \frac{\sum^{k_i}_{j=1}{(D(S_{i}}, S_{ij}) < n)}{k_i}
 \end{equation}
 where 
@@ -254,7 +241,6 @@ where
 
 \subsubsection{Internal Evaluation - Distance gain \cite{gabadinho2009extracting}.} The distance gain measures the gain in using a representative journey instead of the true center of the set (i.e., the medoid of the whole dataset). In other words, it measures the gain obtained in using multiple representative journeys instead of a single one.   
 \begin{equation}
-\footnotesize
     DistGain_i = \frac{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})-\sum^{k_i}_{j=1}{D(S_{i}}, S_{ij})}{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})} 
 \end{equation}
 where 
