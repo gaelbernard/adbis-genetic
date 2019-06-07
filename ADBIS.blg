@@ -8,45 +8,45 @@ Warning--empty journal in gabadinho2009summarizing
 Warning--empty journal in bernard2017Markov
 Warning--can't use both volume and number fields in levenshtein1966binary
 Warning--there's a number but no volume in gabadinho2013searching
-You've used 18 entries,
+You've used 16 entries,
             2850 wiz_defined-function locations,
-            703 strings with 8676 characters,
-and the built_in function-call counts, 8026 in all, are:
-= -- 631
-> -- 168
-< -- 14
-+ -- 68
-- -- 50
-* -- 456
-:= -- 895
-add.period$ -- 26
-call.type$ -- 18
-change.case$ -- 38
+            690 strings with 8177 characters,
+and the built_in function-call counts, 7082 in all, are:
+= -- 565
+> -- 139
+< -- 12
++ -- 57
+- -- 41
+* -- 394
+:= -- 789
+add.period$ -- 24
+call.type$ -- 16
+change.case$ -- 35
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 866
-empty$ -- 861
-format.name$ -- 66
-if$ -- 1858
+cite$ -- 21
+duplicate$ -- 761
+empty$ -- 770
+format.name$ -- 55
+if$ -- 1650
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 175
-newline$ -- 60
-num.names$ -- 17
-pop$ -- 330
+int.to.str$ -- 16
+missing$ -- 151
+newline$ -- 54
+num.names$ -- 15
+pop$ -- 294
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 202
+skip$ -- 185
 stack$ -- 0
-substring$ -- 449
-swap$ -- 450
-text.length$ -- 14
+substring$ -- 399
+swap$ -- 384
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 5
-while$ -- 65
-width$ -- 20
-write$ -- 182
+while$ -- 58
+width$ -- 18
+write$ -- 161
 (There were 5 warnings)

@@ -100,7 +100,7 @@ In \cite{bernard2017cjmEX}, we propose CJM-ex, an online tool to explore CJMs. B
 \section{Genetic Algorithm for CJM Discovery}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\columnwidth]{05_schema/process.pdf}
+\includegraphics[width=0.95\columnwidth]{05_schema/process.pdf}
   \caption{Genetic approach}
   \label{fig:process}
 \end{figure}
@@ -109,7 +109,7 @@ Our work is inspired by the genetic approaches proposed in \cite{buijs2012geneti
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\columnwidth]{05_schema/intuition2.pdf}
+\includegraphics[width=1\columnwidth]{05_schema/intuition2.pdf}
   \caption{Illustration of the genetic process to discover the best CJM}
   \label{fig:intuition2}
 \end{figure}
@@ -158,7 +158,7 @@ where
  $${x_0}$$  &  x value of the midpoint \\
 \end{conditions*} 
 
-We set the value of the midpoint, x_{0}, to 5 for all our experiments. The intuition behind this parameter is the following. If we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are others evaluation criteria.
+We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The intuition behind this parameter is the following. If we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are others evaluation criteria.
 
 \label{contextual-distance}
 \subsubsection{Contextual Distance.} The contextual distance allows us to consider the set of contextual data $C$ when grouping similar journeys. The more distant the set of contextual data is between $J_a$ that are represented by distinct $J_r$, the better the quality is. To measure the distance, we first build a value frequency table which count all the values per representatives (${v_i}$ is the value frequency counter for $J_{r_i})$. Then, for each pair of clusters, we calculate the cosine similarity, which is defined as:
@@ -201,56 +201,56 @@ In order to evaluate the quality of our approach to return the best set of repre
 \end{wrapfigure} 
 
 
-To evaluate the results of our algorithm, we produced several event logs that simulate journeys. Generating the event logs ourselves means that we know the ground truth represented by the generative journeys and therefore our task would be to recover these journeys from a set of actual ones we produce. A generative journey is a known sequence of activities with a known set of characteristics from which we generate the event logs. If we were to use only these generative journeys to generate 1,000 thousand journeys, we would obtain only {$k_{\mathcal{G}}$ distinct journeys. From a business point of view, this would describe an ideal situation where each group of customers behaves in an homogeneous way. However, we know that this is not the case. A more realistic situation would depict a scenario where each group of customers can be described by a representative sequence of activities, but the actual journeys within the group can deviate from the representative one. To produce more realistic data, we inject noise for a fraction of the journeys. For instance, if the noise level is set to 50\%, $J_a = J_g$ is true for half of the data. Fig.~\ref{fig:dataset} illustrates how six journeys are generated from two generative journeys. If we assume that the noise level is defined to be 50\%, three actual journeys in the events logs deviate from the original generative journeys. The goal of our experiments is to retrieve the set of generative journeys, as representatives, from the produced actual journeys. The 40 generated datasets as well as details on how we produced them are made publicly available\footnote{\url{http://customer-journey.unil.ch/datasets/}}.
+To evaluate the results of our algorithm, we generated synthetic event logs that simulate journeys using generative journeys. A generative journey is a known sequence of activities with a known set of characteristics from which we generate the event logs. These generative journeys represent the ground truth. If we used only those known generative journeys to produce the dataset, we would get only {$k_{\mathcal{G}}$ distinct journeys. From a business point of view, this would describe an ideal situation where each group of customers behaves in an homogeneous way. However, we know that this is not the case. 
+Having group of similar journeys that slightly differ from a representative is a more realistic setting. To achieve this, we add some noise to the generated journeys. Typically, when the noise level is set to 50\%, $J_a = J_g$ is true for half of the data. Fig.~\ref{fig:dataset} illustrates how six journeys are generated from two generative journeys. If we assume that the noise level is defined to be 50\%, three actual journeys in the events logs deviate from the original generative journeys. The goal of our experiments is to retrieve the set of generative journeys, as representatives, from the produced actual journeys. The 40 generated datasets as well as details on how we produced them are made publicly available\footnote{\url{http://customer-journey.unil.ch/datasets/}}.
 
 \subsection{Metrics}
-To evaluate and compare the quality of representative journeys, we use both external and internal evaluation metrics. On the one hand, the external ones evaluate the results relative to the ground truth, i.e., from the generative journeys. On the other hand, the internal evaluation uses cluster analysis techniques to assess the results. The aim is to account for the fact that the ground truth might not be the optimal solution. Indeed, adding random noise might change the optimal solution. This section introduces these metrics. For the internal evaluation metrics, we borrowed metrics from \cite{gabadinho2009extracting}.
+To evaluate and compare the quality of representative journeys, we rely both on external and internal evaluations. The primer evaluates the results by using the generative journeys. Because we add some random noise, it might be the case that the ground truth is not the best solution. For this reason, we also use internal evaluations that relies on cluster analysis techniques. These metrics are described in \cite{gabadinho2009extracting}.
 
-
-\subsubsection{External Evaluation - Distance in Number of Journeys.} This metric measures the distance between the number of generative journeys and the number of representative journeys returned by the algorithm. We propose the following metric:
+\subsubsection{External Evaluation - Distance in Number of Journeys.} Measure the distance between the number of generative journeys and the number of representative journeys. We evaluate this metric using the following equation:
 \begin{equation}
     NbJourneysDistance({k_{\mathcal{G}}}, {k_{\mathcal{R}}}) = abs({k_{\mathcal{G}}} - {k_{\mathcal{R}}}) 
 \end{equation}
 
-\subsubsection{External Evaluation - Jaccard Distance.} To evaluate the distance between the sequences of activities from the generative journeys ($\sigma_{\mathcal{G}}$) and the discovered representative journeys ($\sigma_{\mathcal{R}}$), we propose to use the Jaccard Distance where a score of 1 indicates a perfect match between the set of sequences from the generative journeys and the representative ones. 
+\subsubsection{External Evaluation - Jaccard Distance.} We use the Jaccard distance to evaluate how well we can retrieve the generative journeys.
 \begin{equation}
     JaccardDistance(\mathbf{\sigma_{\mathcal{R}}}, \sigma_{\mathcal{G}}) = 1 - \frac{|\mathbf{\sigma_{\mathcal{R}} \cap \sigma_{\mathcal{G}}}|}{|\mathbf{\sigma_{\mathcal{R}} \cup \sigma_{\mathcal{G}}}|}
 \end{equation}
 
-\subsubsection{Internal Evaluation - Mean distance \cite{gabadinho2009extracting}.} The mean distance $i$ returns the average distance between the representative sequence $i$ and the sequence of actual journeys that have been assigned to $i$. If the mean distance $i$ is 0, then the representative journey $i$ perfectly matches the underlying actual journeys.   
+\subsubsection{Internal Evaluation - Mean distance \cite{gabadinho2009extracting}.} This metric measures the distance between the actual journeys and their respective representative. 
 \begin{equation}
     MeanDistanceScore_i = \frac{\sum^{k_i}_{j=1}{D(S_{i}}, S_{ij})}{k_i}
 \end{equation}
 where 
 \begin{conditions*}
   D(x_1,x_2)  &  Levenshtein distance between two sequences  \\
-  k_i & Number of actual journeys assigned to the representative journey $i$  \\
+  k_i & Number of journeys attached to the representative $i$  \\
   S_i & Representative sequence $i$  \\
-  S_{ij} & Sequence of actual journeys $j$ assigned to $i$  \\
+  S_{ij} & Sequence of journeys $j$ attached to the representative $i$  \\
 \end{conditions*} 
 
-\subsubsection{Internal Evaluation - Coverage \cite{gabadinho2009extracting}.} The coverage indicates the proportion of actual journeys that are within the neighborhood $n$ of a representative.   
+\subsubsection{Internal Evaluation - Coverage \cite{gabadinho2009extracting}.} This metric represents the density of journeys in the neighborhood $n$ of a representative.   
 \begin{equation}
     Coverage_i = \frac{\sum^{k_i}_{j=1}{(D(S_{i}}, S_{ij}) < n)}{k_i}
 \end{equation}
 where 
 \begin{conditions*}
   D(x_1,x_2)  &  Levenshtein distance between two sequences  \\
-  k_i & Number of actual journeys assigned to the representative journey $i$  \\
+  k_i & Number of journeys attached to the representative $i$  \\
   S_i & Representative sequence $i$  \\
-  S_{ij} & Sequence of actual journeys $j$ assigned to $i$  \\
+  S_{ij} & Sequence of journeys $j$ attached to the representative $i$  \\
 \end{conditions*} 
 
-\subsubsection{Internal Evaluation - Distance gain \cite{gabadinho2009extracting}.} The distance gain measures the gain in using a representative journey instead of the true center of the set (i.e., the medoid of the whole dataset). In other words, it measures the gain obtained in using multiple representative journeys instead of a single one.   
+\subsubsection{Internal Evaluation - Distance gain \cite{gabadinho2009extracting}.} This metric measures the gain in using representative journeys rather than the medoid of the dataset.   
 \begin{equation}
     DistGain_i = \frac{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})-\sum^{k_i}_{j=1}{D(S_{i}}, S_{ij})}{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})} 
 \end{equation}
 where 
 \begin{conditions*}
   D(x_1,x_2)  &  Levenshtein distance between two sequences  \\
-  k_i & Number of actual journeys assigned to the representative journey $i$  \\
+  k_i & Number of journeys attached to the representative $i$  \\
   S_i & Representative sequence $i$  \\
-  S_{ij} & Sequence of actual journeys $j$ assigned to $i$  \\
+  S_{ij} & Sequence of journeys $j$ attached to the representative $i$  \\
   C(x)  &  True center of the set  \\
 \end{conditions*} 
 
@@ -262,14 +262,14 @@ where
 \end{figure}
 
 \subsection{Settings}
-We evaluate two settings of our genetic algorithm against traditional approaches. The traditional approaches are state-of-the-art techniques that are used to cluster and summarize sets of sequential and categorical data. Fig.~\ref{fig:approach} depicts the approach at a high-level. As can be seen, with traditional approaches, we first build a distance metric. We use the edit distance with a constant cost operation set to 1. Once the distance matrix is built, we create $k$ clusters. Because we do not know the number of representative journeys to be found, we test using from 2 to 12 clusters and use the squared Calinski-Harabasz index described in \cite{calinski1974dendrite} to return the most statistically relevant. Then, we return the best representatives of each cluster using the neighborhood density, the centrality, the frequency, or the likelihood {using the package Traminer available in R \cite{gabadinho2013searching}}. These techniques do not use the contextual data. Hence, to allow for a fair comparison, we compare these techniques with a version of our genetic algorithm that does not use contextual data and which was presented in \cite{bernard2019genetic}. {We call this version {$Genetic_1$}.} We also test our genetic algorithm with a version that considers the contextual data, called $Genetic_2$. Note that both the traditional and genetic approaches use the same techniques to find $k_{h}$ and the distance is measured using the edit distance with a constant cost operation set to 1. Due to the non-deterministic nature of the genetic algorithm, we run it ten times for each setting.
+We test two settings of the algorithm against traditional approaches. The traditional approaches are state-of-the-art techniques that are used to cluster and summarize sets of sequential and categorical data. Fig.~\ref{fig:approach} depicts the approach at a high-level. As can be seen, with traditional approaches, we first build a distance metric. We use the edit distance with a constant cost operation set to 1. Once the distance matrix is built, we create $k$ clusters. Because we do not know the number of representative journeys to be found, we test using from 2 to 12 clusters and use the squared Calinski-Harabasz index described in \cite{calinski1974dendrite} to return the most statistically relevant. Next, we get the best representatives using the neighborhood density, the centrality, the frequency, or the likelihood using Traminer \cite{gabadinho2013searching}. These techniques do not use the contextual data. Hence, to allow for a fair comparison, we compare these techniques with a version of our genetic algorithm that does not use contextual data and which was presented in \cite{bernard2019genetic}. {We call this version {$Genetic_1$}.} We also test our genetic algorithm with a version that considers the contextual data, called $Genetic_2$. Note that both the traditional and genetic approaches use the same techniques to find $k_{h}$ and the distance is measured using the edit distance with a constant cost operation. To account for the fact that the genetic algorithm is non-deterministic, we run the algorithm ten times for each setting.
 
 \subsection{Results}
 Fig.~\ref{fig:results} shows the external evaluation metrics. It can be seen that the best solution is the $Genetic_2$, highlighting that considering the contextual information when grouping journeys improves the quality. Next, the best solution that does not use contextual data is $Genetic_1$ proposed in \cite{bernard2019genetic}. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.92\columnwidth]{05_schema/results_len.pdf}
+\includegraphics[width=1\columnwidth]{05_schema/results_len.pdf}
   \caption{External evaluation. The genetic algorithm that uses the contextual information (i.e., $Genetic_2$) performs best.}
   \label{fig:results}
 \end{figure}
@@ -280,25 +280,23 @@ The internal evaluation of Fig.~\ref{fig:eval_internal} shows that not only does
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\columnwidth]{05_schema/eval_internal.pdf}
+\includegraphics[width=0.9\columnwidth]{05_schema/eval_internal.pdf}
   \caption{Internal evaluation. The $Genetic_2$ has the best coverage and mean distance while $Genetic_1$ has the best distance gain.}
   \label{fig:eval_internal}
 \end{figure}
 
 
-\begin{wrapfigure}{l}{0.45\textwidth}
+\begin{figure}[H]
   \begin{center}
-    \raisebox{0pt}[\dimexpr\height-3\baselineskip\relax]{\
-\includegraphics[width=0.42\columnwidth]{05_schema/time.pdf}
-    }
+    
+	\includegraphics[width=0.42\columnwidth]{05_schema/time.pdf}
+    
   \end{center}
-  \vspace{-20pt}
-  \caption{Comparing the execution time per dataset for 100, 1'000, and 10'000 journeys.}
-  \vspace{-20pt}
+  \caption{Execution time for 100, 1'000, and 10'000 journeys.}
   \label{fig:performance-time}
-\end{wrapfigure} 
+\end{figure}
 
-Finally, the execution time to for 1,000 actual journeys is much faster using the approach with the techniques implemented in Traminer \cite{gabadinho2013searching} compared to our genetic approach. We compare how the different algorithms scale when the number of journeys increases. Hence, we ran each configuration five times with the 40 different datasets. Fig.~\ref{fig:performance-time} summarizes the results. As can be seen, the algorithms implemented in Traminer are orders of magnitude faster than our approach when dealing with 100 or 1,000 journeys. However, note that our algorithm has a better scaling potential when the number of journeys grows. All the algorithms tested tend to be slow and will not scale when dealing with several thousand journeys. 
+The execution time for one thousand journeys is improved using Traminer \cite{gabadinho2013searching} compared to our genetic approach. We compare how the different algorithms scale when the number of journeys increases. Hence, we ran each configuration five times with the 40 different datasets. Fig.~\ref{fig:performance-time} summarizes the results. As can be seen, the algorithms implemented in Traminer are orders of magnitude faster than our approach when dealing with 100 or 1,000 journeys. However, note that our algorithm has a better scaling potential when the number of journeys grows. All the algorithms tested tend to be slow and will not scale when dealing with several thousand journeys. 
 
 \section{Experiments Using Real Datasets}
 
@@ -306,17 +304,15 @@ This section reports on the experiments with a real dataset, the goal being to i
 } describing the activities performed throughout the day by Chicago's citizens. There are 15 types of activities, such as, `being at home', `attending class', `going shopping', or `doing households errands'. In the context of this dataset, a journey is the sequence of activities starting from the morning until the night. Typically, `being at home' $\rightarrow$ `attending class' $\rightarrow$ `being at home' is a journey consisting of three activities. The total number of journeys is 29,541 and there are 123,706 activities (with an average of 4.817 activities per journey). This dataset is interesting not only for the relatively large number of data points describing life trajectories, but also because of the available detailed contextual data, such as information on the citizens' demographics. 
 
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[H]
   \begin{center}
-    \raisebox{-15pt}[\dimexpr\height-3\baselineskip\relax]{\
-\includegraphics[width=0.48\columnwidth]{05_schema/results_real_dataset.pdf}
-    }
+    
+	\includegraphics[width=0.6\columnwidth]{05_schema/results_real_dataset.pdf}
+    
   \end{center}
-  \vspace{0pt}
   \caption{Results with real dataset using three configurations}
-  \vspace{-10pt}
   \label{fig:results_real_dataset}
-\end{wrapfigure} 
+\end{figure}
 
 The goal of the experience is to show the influence of taking the citizen's age in consideration when measuring the distance between journeys. Fig.~\ref{fig:results_real_dataset} shows the results using three different configurations. In configuration 1, we did not leverage the contextual data (i.e., the contextual distance weight is set to 0). We interpret the resulting  CJM as follows. The first journey represents people going to `work', going back `home' at noon, and returning to `work' in the afternoon. The second journey is close to the first one, the main difference being that people do not seem to go back `home' at noon. The third journey shows citizens being at `home', going `shopping' twice in the afternoon, and going back `home'. 
 
@@ -330,10 +326,7 @@ Of course, this is an extremely simplified overview of the data. For the almost 
 \section{Conclusion}
 Our genetic approach to summarizing a set of customer journeys with the purpose of displaying them on a CJM offers an interesting alternative to approaches used in social sciences for three reasons. First, the quality of the results is better, which is true using both internal and external evaluation metrics. Second, the weights of the three quality criteria are a flexible way to analyze a dataset under different perspectives. All the other parameters, such as the number of representative journeys to display or the length of the representative journeys are left entirely to the genetic algorithm. Third, in addition to the sequence of activities, our genetic algorithm can leverage contextual data to group similar journeys. By doing so, we provide a way to summarize insights from customers that are hidden in the data. 
 
-We tackle the task of building a CJM from event logs as a single-objective optimization problem so that a single `best' CJM is returned. Due to the inherent conflicting objectives of the quality criteria, we acknowledge that a multi-objective approach might be a relevant choice that we did not investigate.  
-
-We show that techniques from social sciences are also useful for studying customer trajectories. As suggested by Gabadinho et al., ``The methods are by no way limited to social science data and should prove useful in many other domains'' \cite{gabadinho2009summarizing}. This present study supports this claim and highlights how research from social science can benefit our understanding of customers. At a time when a customer-centric culture has become important \cite{verhoef2009customer}, or even a matter of survival according to \cite{McKinsey2017cultureDig}, we anticipate that research at the crossroads between data science, marketing, and social sciences will be key to a full understanding of customer experiences. 
-
+We tackle the challenging task of building a CJM from event logs as a single-objective optimization problem so that a single `best' CJM is returned. Due to the inherent conflicting objectives of the quality criteria, we acknowledge that a multi-objective approach might be a relevant choice that we did not investigate.  
 
 \bibliographystyle{splncs04}
 \bibliography{bibliography.bib}
