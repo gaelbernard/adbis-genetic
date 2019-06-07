@@ -1,0 +1,102 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{lemon2016understanding}
+Lemon, K.N., Verhoef, P.C.: Understanding customer experience throughout the
+  customer journey. Journal of Marketing  (2016)
+
+\bibitem{how_to_improve}
+G{\"u}rvardar, {\.I}., R{\i}zvano{\u{g}}lu, K., {\"O}zt{\"u}rk, {\"O}., Yavuz,
+  {\"O}.: How to improve the overall pre-purchase experience through a new
+  category structure based on a compatible database: Gittigidiyor (ebay turkey)
+  case. In: International Conference of Design, User Experience, and Usability.
+  pp. 366--376. Springer (2016)
+
+\bibitem{key_factors_in}
+Peltola, S., Vainio, H., Nieminen, M.: Key factors in developing omnichannel
+  customer experience with finnish retailers. In: International Conference on
+  HCI in Business. pp. 335--346. Springer (2015)
+
+\bibitem{MSI2016}
+Research priorities 2014-2016. Tech. rep., Marketing Science Institute (2014),
+  \url{http://www.msi.org/uploads/articles/MSI\_RP16-18.pdf}
+
+\bibitem{bernard2017cjm}
+Bernard, G., Andritsos, P.: A process mining based model for customer journey
+  mapping. In: Proceedings of the Forum and Doctoral Consortium Papers
+  Presented at the 29th International Conference on Advanced Information
+  Systems Engineering (CAiSE 2017) (2017)
+
+\bibitem{bernard2019genetic}
+Bernard, G., Andritsos, P.: Discovering customer journeys from evidence: a
+  genetic approach inspired by process mining. In: Proceedings of the Forum and
+  Doctoral Consortium Papers Presented at the 31st International Conference on
+  Advanced Information Systems Engineering (CAiSE 2019) (2019)
+
+\bibitem{gabadinho2009summarizing}
+Gabadinho, A., Ritschard, G., Studer, M., Mueller, N.S.: Summarizing sets of
+  categorical sequences: selecting and visualizing representative sequences pp.
+  94--106 (October 2009)
+
+\bibitem{gabadinho2009extracting}
+Gabadinho, A., Ritschard, G., Studer, M., M{\"u}ller, N.S.: Extracting and
+  rendering representative sequences. In: International Joint Conference on
+  Knowledge Discovery, Knowledge Engineering, and Knowledge Management. pp.
+  94--106. Springer (2009)
+
+\bibitem{Gartner2015}
+Olding, E., Cantara, M., Robertson, B., Dunie, R., Huang, O., Searle, S.:
+  Predicts 2016: Business transformation and process management bridge the
+  strategy-toexecution gap. Tech. rep., Gartner (November 2015),
+  \url{https://www.gartner.com/doc/3173020/predicts--business-transformation-process}
+
+\bibitem{bernard2017cjmEX}
+Bernard, G., Andritsos, P.: Cjm-ex: Goal-oriented exploration of customer
+  journey maps using event logs and data analytics. In: 15th International
+  Conference on Business Process Management (BPM2017) (2017)
+
+\bibitem{bernard2017Markov}
+Harbich, M., Bernard, G., Berkes, P., Garbinato, B., Andritsos, P.: Discovering
+  customer journey maps using a mixture of markov models  (2017/12)
+
+\bibitem{levenshtein1966binary}
+Levenshtein, V.I.: Binary codes capable of correcting deletions, insertions,
+  and reversals. In: Soviet physics doklady. vol.~10, pp. 707--710 (1966)
+
+\bibitem{schwarz1978estimating}
+Schwarz, G., et~al.: Estimating the dimension of a model. The annals of
+  statistics  \textbf{6}(2),  461--464 (1978)
+
+\bibitem{calinski1974dendrite}
+Cali{\'n}ski, T., Harabasz, J.: A dendrite method for cluster analysis.
+  Communications in Statistics-theory and Methods  \textbf{3}(1),  1--27 (1974)
+
+\bibitem{buijs2012genetic}
+Buijs, J.C., van Dongen, B.F., van~der Aalst, W.M.: A genetic algorithm for
+  discovering process trees. In: Evolutionary Computation (CEC), 2012 IEEE
+  Congress on. pp.~1--8. IEEE (2012)
+
+\bibitem{de2005genetic}
+De~Medeiros, A.A., Weijters, A.: Genetic process mining. In: Applications and
+  Theory of Petri Nets 2005, Volume 3536 of Lecture Notes in Computer Science.
+  Citeseer (2005)
+
+\bibitem{gabadinho2013searching}
+Gabadinho, A., Ritschard, G.: Searching for typical life trajectories applied
+  to childbirth histories. Gendered life courses-Between individualization and
+  standardization. A European approach applied to Switzerland (2013),  287--312
+  (2013)
+
+\bibitem{verhoef2009customer}
+Verhoef, P.C., Lemon, K.N., Parasuraman, A., Roggeveen, A., Tsiros, M.,
+  Schlesinger, L.A.: Customer experience creation: Determinants, dynamics and
+  management strategies. Journal of retailing  \textbf{85}(1),  31--41 (2009)
+
+\bibitem{McKinsey2017cultureDig}
+Goran, J., LaBerge, L., Srinivasan, R.: Culture for a digital age. Tech. rep.,
+  McKinsey (July 2017),
+  \url{https://www.mckinsey.com/business-functions/digital-mckinsey/our-insights/culture-for-a-digital-age}
+
+\end{thebibliography}

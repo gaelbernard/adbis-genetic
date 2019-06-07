@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ADBIS.aux
+The style file: splncs04.bst
+Database file #1: bibliography.bib.bib
+Warning--empty author in MSI2016
+Warning--empty journal in gabadinho2009summarizing
+Warning--empty journal in bernard2017Markov
+Warning--can't use both volume and number fields in levenshtein1966binary
+Warning--there's a number but no volume in gabadinho2013searching
+You've used 19 entries,
+            2850 wiz_defined-function locations,
+            713 strings with 8939 characters,
+and the built_in function-call counts, 8490 in all, are:
+= -- 661
+> -- 184
+< -- 14
++ -- 74
+- -- 55
+* -- 490
+:= -- 950
+add.period$ -- 27
+call.type$ -- 19
+change.case$ -- 40
+chr.to.int$ -- 0
+cite$ -- 24
+duplicate$ -- 921
+empty$ -- 907
+format.name$ -- 72
+if$ -- 1956
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 187
+newline$ -- 63
+num.names$ -- 18
+pop$ -- 348
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 204
+stack$ -- 0
+substring$ -- 475
+swap$ -- 481
+text.length$ -- 14
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 67
+width$ -- 21
+write$ -- 193
+(There were 5 warnings)
