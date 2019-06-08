@@ -105,31 +105,31 @@ In \cite{bernard2017cjmEX}, we propose CJM-ex, an online tool to explore CJMs. B
   \label{fig:process}
 \end{figure}
 
-Our work is inspired by the genetic approaches proposed in \cite{buijs2012genetic,vazquez2015prodigen,de2005genetic} {to discover business process models from event logs. However, we tailored it towards CJMs by introducing specific evaluation metrics suited for them. Fig.~\ref{fig:process} depicts the main phases: (1) a preprocessing phase, (2) generating the initial population, (3) assigning each actual journey to its closest representative, (4) evaluating the quality of the CJMs, (5) the stopping criterion evaluation, and (6) creating new CJMs by applying some genetic operations. We introduce these phases in details while the Fig. \ref{fig:intuition2} illustrates how it works. 
+Our work is inspired by the genetic approaches proposed in \cite{buijs2012genetic,vazquez2015prodigen,de2005genetic} {to discover business process models from event logs. However, we tailored it towards CJMs by introducing specific evaluation metrics suited for them. Fig.~\ref{fig:process} depicts the main phases: (1) a preprocessing phase, (2) a phase for the generation of the initial population, (3) the assignment of each actual journey to its closest representative, (4) the evaluation of the quality of the CJMs, (5) the stopping criterion evaluation, and (6) the creation of new CJMs by applying some genetic operations. We introduce these phases in details while the Fig. \ref{fig:intuition2} illustrates how it works. 
 
 \begin{figure}
 \centering
 \includegraphics[width=1\columnwidth]{05_schema/intuition2.pdf}
-  \caption{Illustration of the genetic process to discover the best CJM}
+  \caption{Illustration of the genetic process for the discovery of the best CJMs}
   \label{fig:intuition2}
 \end{figure}
 
 \subsection{Preprocessing} \label{preprocessing}
-We assume that the representative journeys will be similar to the most frequent patterns journeys. Hence, to reduce computation time, we extract the most frequent patterns that we use to create new journeys and to generate the initial population. Let $Top_{\ell_n}$ be the $n$ most occurring patterns of length $\ell$ and $Top_n \supseteq Top_{\ell_{[2,m]}}$ be the list of all the most occurring patterns of lengths $2$ to $m$. By using $Top_n$, we reduce the execution time by two without impairing the quality of the final output.
+We assume that the representative journeys will be similar to the journeys with the most frequent patterns of activities. Hence, to reduce computation time, we extract the most frequent patterns that we use to create new journeys and generate the initial population. Let $Top_{\ell_n}$ be the $n$ most occurring patterns of activities of length $\ell$ and $Top_n \supseteq Top_{\ell_{[2,m]}}$ be the list of all the most occurring patterns of lengths $2$ to $m$. By using $Top_n$, we reduce the execution time by two without impairing the quality of the final output.
 
 \subsection{Initial Population}
 \label{chap:initial-population}
-We start by generating a set of random CJMs. There are created by picking journeys from from $Top_n$. In our running example, depicted in Fig.~\ref{fig:intuition2}, the initial population is visible in column `generation 1'. In Fig.~\ref{fig:intuition2}, the population size is 3. In our experiments, we set the population size to 100. 
+We start by generating a set of random CJMs. They are created by picking journeys from $Top_n$. In our running example, depicted in Fig.~\ref{fig:intuition2}, the initial population is visible in column `generation 1'. In Fig.~\ref{fig:intuition2}, the population size is 3. In our experiments, we set the population size to 100. 
 
-\subsection{Assign Actual Journeys}
+\subsection{Assignment of Actual Journeys}
 In order to evaluate the quality of the generated CJMs, it is required to assign each actual journey to its closest representative. The closeness between $J_a$ and $J_r$ is measured using the Levenshtein distance \cite{levenshtein1966binary}. This metric counts the number of edit operations (i.e., deletions, insertions, and substitutions) required to match two sequences. Typically, the distance between {$\langle \textsc{xyz} \rangle$} and {$\langle \textsc{xyyw} \rangle$} is 2. The closest representative is the one having the smallest Levenshtein distance with the actual journeys. If a tie occurs, we assign the actual journey to the representative having the less journeys already assigned to it. When the actual journeys have been assigned to their respective closest representative, we can start evaluating the quality of the CJMs. 
  
 \subsection{CJM Evaluation Criteria}
 \label{chapter:cjm-evaluation-criteria}
 
-We define four criteria to evaluate the quality of CJMs: (1) the fitness, (2) the number of representatives, (3) the contextual distance, and (4) the average quality.  
+We define four criteria to evaluate the quality of CJMs: (1) the fitness, (2) the number of representatives, (3) the contextual distance, and (4) the average quality. Next, we define them.
 
-\subsubsection{Fitness.} Using the Levenshtein distance \cite{levenshtein1966binary}, the fitness quality measures the distance between the representative sequence and the actual journeys assigned to it. 
+\subsubsection{Fitness.} Using the Levenshtein distance \cite{levenshtein1966binary}, fitness quality measures the distance between the representative sequence and the actual journeys assigned to it. 
 \begin{equation}
     Fitness(J_{a}, J_{\mathcal{R}}) =  
     1-\frac
@@ -143,9 +143,9 @@ where
  Length(x)  &  Number of touchpoints in the sequence $x$
 \end{conditions*} 
 
-When an actual journey is strictly identical to its representative journey, the fitness is 1.
+When an actual journey is strictly identical to its representative journey, the fitness measure is equal to 1.
 
-\subsubsection{Number of Representatives.} The more representative journeys we use, the more likely the fitness will be high. Hence, without a metric that helps keeping a low number of representatives, we would obtain a final CJM with several thousands representative journeys. Therefore, the goal of the metric is to keep a low number of representatives. To guide the algorithm towards an `ideal' number of representatives, we borrowed a clustering technique that helps in choosing the number of clusters. More specifically, we used the Calinski-Harabasz index \cite{calinski1974dendrite}. Let $k_{h}$ be the optimal number of clusters returned by the Calinski-Harabasz index. To evaluate the quality, we measure the distance between $k_{\mathcal{R}}$ and $k_{h}$ using the following distribution function: 
+\subsubsection{Number of Representatives.} The more representative journeys we use, the more likely the fitness will be high. Hence, without a metric that allows a low number of representatives, we would obtain a final CJM with several thousands of representative journeys. Therefore, the goal of this metric is to keep a low number of representatives. To guide the algorithm towards an `ideal' number of representatives, we employ a clustering technique that helps in choosing the number of clusters. More specifically, we used the Calinski-Harabasz index \cite{calinski1974dendrite}. Let $k_{h}$ be the optimal number of clusters returned by the Calinski-Harabasz index. To evaluate the quality, we measure the distance between $k_{\mathcal{R}}$ and $k_{h}$ using the following distribution function: 
 
 \begin{equation}
     Number Of Representatives({k_{\mathcal{R}}}, {k_{h}}, {x_0}) = \frac{1}{1 + (\frac{|k_{\mathcal{R}}-k_{h}|}{x_0})^{2} } 
@@ -158,10 +158,10 @@ where
  $${x_0}$$  &  x value of the midpoint \\
 \end{conditions*} 
 
-We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The intuition behind this parameter is the following. If we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are others evaluation criteria.
+We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The intuition behind this parameter is the following: if we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are other evaluation criteria.
 
 \label{contextual-distance}
-\subsubsection{Contextual Distance.} The contextual distance allows us to consider the set of contextual data $C$ when grouping similar journeys. The more distant the set of contextual data is between $J_a$ that are represented by distinct $J_r$, the better the quality is. To measure the distance, we first build a value frequency table which count all the values per representatives (${v_i}$ is the value frequency counter for $J_{r_i})$. Then, for each pair of clusters, we calculate the cosine similarity, which is defined as:
+\subsubsection{Contextual Distance.} The contextual distance allows us to consider the set of contextual data $C$ when grouping similar journeys. The more distant the set of contextual data is between $J_a$ that are represented by distinct $J_r$, the better the quality is. To measure the distance, we first build a value frequency table which counts all the values per representative (${v_i}$ is the value frequency counter for $J_{r_i})$. Then, for each pair of clusters, we calculate the cosine similarity, which is defined as:
 
 \begin{equation}
     ContextualDistance({v_{1}}, {v_{2}}) = \frac{v_{1} \cdot v_{2}}{||v_{1} ||\cdot||v_{2}||} 
@@ -169,17 +169,17 @@ We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The int
 
 Finally, the cosine distances are averaged to get the overall contextual distance. A short overall distance indicates that the contextual data of $J_a$ that are assigned to distinct $J_r$ are similar. In other words, the contextual data does not help in classifying $J_a$ between several $J_r$. 
 
-\subsubsection{Average Quality.} We get the average weighted quality by getting the arithmetic mean of: (1) the fitness, (2) the number of representatives, and (3) the contextual-distance. 
+\subsubsection{Average Quality.} We get the average weighted quality by getting the arithmetic mean of: the fitness, the number of representatives, and the contextual-distance. 
 
 \subsection{Stopping Criterion}
-Once we assess the quality of generated CJMs, we assess the stopping criterion. Inspired by the process mining genetic algorithms, \cite{buijs2012genetic,de2005genetic}, we found three stopping criterion: (1) a certain amount of generations has been reached, (2) the quality does not improve anymore, or, (3), a quality threshold has been reached. Predicting the quality that will be reached by a CJM is difficult. Hence, we believe that the third way stopping criteria is not advisable. If a stopping criteria is met, the algorithm stops, returning the best $J_{\mathcal{R}}$. If none of the stopping criterion is met, we generate new candidates by recursively calling a function that generates the next population, described in the next section.
+Once we assess the quality of generated CJMs, we assess the stopping criterion. Inspired by the process mining genetic algorithms, \cite{buijs2012genetic,de2005genetic}, we found three stopping criteria: (1) a certain amount of generations has been reached, (2) the quality does not improve anymore, or, (3), a quality threshold has been reached. Predicting the quality that will be reached by a CJM is difficult. Hence, we believe that the latter stopping criterion is not advisable. If a stopping criterion is met, the algorithm stops, returning the best $J_{\mathcal{R}}$. If none of the stopping criteria is met, we generate new candidates by recursively calling a function that generates the next population, described in the next section.
 
 \subsection{Genetic Operations}
 Before transforming the CJMs, we evaluate and rank them by average quality. We copy a fraction (i.e., $e$) of the best CJMs in a set named {$elite$}. In Fig.~\ref{fig:intuition2}, the elite size is 1. In our experiments, we set the elite size to 5. 
 
-By keeping the best CJMs as-is, we ensure that the quality will increase or stay steady. We also generate $p-e$ new CJMs using the following operators. {\it (1) Add a random journey (mutation):} A sequence from $Top_n$ is added to $J_{\mathcal{R}}$. {\it (2) Add an existing journey (crossover):} A journey from the elite population is added to $J_{\mathcal{R}}$. {\it (3) Delete a journey (mutation):} A journey is removed from $J_{\mathcal{R}}$. Nothing happens if $J_{\mathcal{R}}$ contains only one journey. {\it (4) Add a touchpoint (mutation):} A touchpoint is inserted in one of the existing journeys. {\it (5) Delete a touchpoint (mutation):} A touchpoint is removed from $J_{\mathcal{R}}$. 
+By keeping the best CJMs as-is, we ensure that the quality will increase or stay unchanged. We also generate $p-e$ new CJMs using the following operators. {\it (1) Addition of a random journey (mutation):} A sequence from $Top_n$ is added to $J_{\mathcal{R}}$. {\it (2) Addition of an existing journey (crossover):} A journey from the elite population is added to $J_{\mathcal{R}}$. {\it (3) Deletion of a journey (mutation):} A journey is removed from $J_{\mathcal{R}}$. Nothing happens if $J_{\mathcal{R}}$ contains only one journey. {\it (4) Addition of a touchpoint (mutation):} A touchpoint is inserted in one of the existing journeys. {\it (5) Deletion of a touchpoint (mutation):} A touchpoint is removed from $J_{\mathcal{R}}$. 
 
-We loop over each of these 5 types of transformations three times. Each time, the probability of applying the transformation is 10\%, which means that more than one transformation is applied. It also means that the same transformation might be applied up to three times (with a probability of 0.1\%). At the very least, one transformation has to be applied. If it is not the case, we loop over each transformation three times again until at least a transformation is applied.
+We loop over each of these 5 types of transformations three times. Each time, the probability of applying the transformation is 10\%, which means that more than one transformation is applied. It also means that the same transformation might be applied up to three times (with a probability of 0.1\%). At the very least, one transformation has to be applied. If it is not the case, we loop over each transformation three times again until at least a transformation is performed.
 
 In Fig.~\ref{fig:intuition2}, $J_{\mathcal{R}5}$ have been produced by taking $J_{\mathcal{R}2}$ and adding a journey picked from $Top_n$ (defined in Sect. \ref{preprocessing}). Once new $J_{\mathcal{R}}$s have been created, we return to the evaluation phase as shown in Fig.~\ref{fig:process}. 
 
@@ -201,13 +201,13 @@ In order to evaluate the quality of our approach to return the best set of repre
 \end{wrapfigure} 
 
 
-To evaluate the results of our algorithm, we generated synthetic event logs that simulate journeys using generative journeys. A generative journey is a known sequence of activities with a known set of characteristics from which we generate the event logs. These generative journeys represent the ground truth. If we used only those known generative journeys to produce the dataset, we would get only {$k_{\mathcal{G}}$ distinct journeys. From a business point of view, this would describe an ideal situation where each group of customers behaves in an homogeneous way. However, we know that this is not the case. 
-Having group of similar journeys that slightly differ from a representative is a more realistic setting. To achieve this, we add some noise to the generated journeys. Typically, when the noise level is set to 50\%, $J_a = J_g$ is true for half of the data. Fig.~\ref{fig:dataset} illustrates how six journeys are generated from two generative journeys. If we assume that the noise level is defined to be 50\%, three actual journeys in the events logs deviate from the original generative journeys. The goal of our experiments is to retrieve the set of generative journeys, as representatives, from the produced actual journeys. The 40 generated datasets as well as details on how we produced them are made publicly available\footnote{\url{http://customer-journey.unil.ch/datasets/}}.
+In order to evaluate the results of our algorithm, we generated synthetic event logs that simulate journeys using generative journeys. A generative journey is a known sequence of activities with a known set of characteristics from which we generate the event logs. These generative journeys represent the ground truth. If we used only those known generative journeys to produce the dataset, we would get only {$k_{\mathcal{G}}$ distinct journeys. From a business point of view, this would describe an ideal situation where each group of customers behaves in an homogeneous way. However, we know that this is not the case. 
+Having group of similar journeys that slightly differ from a representative is a more realistic setting. To achieve this, we add some noise to the generated journeys. Typically, when the noise level is set to 50\%, $J_a = J_g$ is true for half of the data. Fig.~\ref{fig:dataset} illustrates how six journeys are generated from two generative journeys. If we assume that the noise level is defined to be 50\%, three actual journeys in the event logs deviate from the original generative journeys. The goal of our experiments is to retrieve the set of generative journeys, as representatives, from the produced actual journeys. The 40 generated datasets as well as details on how we produced them are made publicly available\footnote{\url{http://customer-journey.unil.ch/datasets/}}.
 
 \subsection{Metrics}
-To evaluate and compare the quality of representative journeys, we rely both on external and internal evaluations. The primer evaluates the results by using the generative journeys. Because we add some random noise, it might be the case that the ground truth is not the best solution. For this reason, we also use internal evaluations that relies on cluster analysis techniques. These metrics are described in \cite{gabadinho2009extracting}.
+To evaluate and compare the quality of representative journeys, we rely both on external and internal evaluations. The former evaluates the results by using the generative journeys. Since we add some random noise, it might be the case that the ground truth is not the best solution. For this reason, we also use internal evaluation measures that rely on cluster analysis techniques. These metrics are described in \cite{gabadinho2009extracting}.
 
-\subsubsection{External Evaluation - Distance in Number of Journeys.} Measure the distance between the number of generative journeys and the number of representative journeys. We evaluate this metric using the following equation:
+\subsubsection{External Evaluation - Distance in the Number of Journeys.} Measures the distance between the number of generative journeys and the number of representative journeys. We evaluate this metric using the following equation:
 \begin{equation}
     NbJourneysDistance({k_{\mathcal{G}}}, {k_{\mathcal{R}}}) = abs({k_{\mathcal{G}}} - {k_{\mathcal{R}}}) 
 \end{equation}
@@ -241,7 +241,7 @@ where
   S_{ij} & Sequence of journeys $j$ attached to the representative $i$  \\
 \end{conditions*} 
 
-\subsubsection{Internal Evaluation - Distance gain \cite{gabadinho2009extracting}.} This metric measures the gain in using representative journeys rather than the medoid of the dataset.   
+\subsubsection{Internal Evaluation - Distance gain \cite{gabadinho2009extracting}.} This metric quantifies the gain in using representative journeys rather than the medoid of the dataset.   
 \begin{equation}
     DistGain_i = \frac{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})-\sum^{k_i}_{j=1}{D(S_{i}}, S_{ij})}{\sum^{k_i}_{j=1}{D(C(\sigma_{\mathcal{A}})}, S_{ij})} 
 \end{equation}
@@ -274,7 +274,7 @@ Fig.~\ref{fig:results} shows the external evaluation metrics. It can be seen tha
   \label{fig:results}
 \end{figure}
 
-The internal evaluation of Fig.~\ref{fig:eval_internal} shows that not only does the genetic algorithm outperform the traditional approaches, it also proposes a better solution than the ground truth. This can be explained by the fact that when we inject noise, we potentially change the optimal solution.  
+The internal evaluation of Fig.~\ref{fig:eval_internal} shows that not only does the genetic algorithm outperforms the traditional approaches, it also proposes a better solution than the ground truth. This can be explained by the fact that when we inject noise, we potentially change the optimal solution.  
 
 
 
@@ -314,9 +314,9 @@ This section reports on the experiments with a real dataset, the goal being to i
   \label{fig:results_real_dataset}
 \end{figure}
 
-The goal of the experience is to show the influence of taking the citizen's age in consideration when measuring the distance between journeys. Fig.~\ref{fig:results_real_dataset} shows the results using three different configurations. In configuration 1, we did not leverage the contextual data (i.e., the contextual distance weight is set to 0). We interpret the resulting  CJM as follows. The first journey represents people going to `work', going back `home' at noon, and returning to `work' in the afternoon. The second journey is close to the first one, the main difference being that people do not seem to go back `home' at noon. The third journey shows citizens being at `home', going `shopping' twice in the afternoon, and going back `home'. 
+The goal of this experiment is to show the influence of taking the citizen's age in consideration when measuring the distance between journeys. Fig.~\ref{fig:results_real_dataset} shows the results using three different configurations. In configuration 1, we did not leverage the contextual data (i.e., the contextual distance weight is set to 0). We interpret the resulting  CJM as follows. The first journey represents people going to `work', going back `home' at noon, and returning to `work' in the afternoon. The second journey is close to the first one, the main difference being that people do not seem to go back `home' at noon. The third journey shows citizens being at `home', going `shopping' twice in the afternoon, and going back `home'. 
 
-In configuration 2, we test the effect on the resulting CJM when considering the ages of the customers. Therefore, we changed the weight put on the contextual distance from 0 to 1. As can be seen in Fig.~\ref{fig:results_real_dataset}, three representative journeys were generated. Each of these journeys has three touchpoints. They start from `home' and finish at `home'. In between, the first journey has the activity `work', the second one has the activity `shopping', and the last one the activity `attending class'. It is interesting to note the effect of the configuration on the contextual data (the distribution charts on the right side of Fig.~\ref{fig:results_real_dataset}). Indeed, while the age was equally distributed for each journey in configuration 1, we can observe that the age is discriminant in configuration 2. For instance, more than half of the citizens in the journey $j_3$ are under 16 years old, while this population represents only 8.7\% of the entire dataset.
+In configuration 2, we test the effect on the resulting CJM when considering the ages of the customers. Therefore, we changed the weight assigned to the contextual distance from 0 to 1. As can be seen in Fig.~\ref{fig:results_real_dataset}, three representative journeys were generated. Each of these journeys has three touchpoints. They start from `home' and finish at `home'. In between, the first journey has the activity `work', the second one has the activity `shopping', and the last one the activity `attending class'. It is interesting to note the effect of the configuration on the contextual data (the distribution charts on the right side of Fig.~\ref{fig:results_real_dataset}). Indeed, while the age was equally distributed for each journey in configuration 1, we can observe that the age is discriminant in configuration 2. For instance, more than half of the citizens in the journey $j_3$ are under 16 years old, while this population represents only 8.7\% of the entire dataset.
 
 In configuration 3, we show the effect when we increase the weight put on the contextual distance parameter. Journeys $j_1$ and $j_3$ are identical to those in configuration 2. However, a new and rather complex journey $j_2$ emerges. We observe that the distribution is impacted when giving more weight to homogeneity. We interpret the result as follows: Citizens younger than 29 years old tend to have two typical patterns of activities involving either `school' or `entertainment' while the most typical journeys for the other citizens involve `work'. 
 
