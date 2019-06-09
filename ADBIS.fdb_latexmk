@@ -1,17 +1,17 @@
 # Fdb version 3
-["bibtex ADBIS"] 1559930891 "ADBIS.aux" "ADBIS.bbl" "ADBIS" 1559930892
+["bibtex ADBIS"] 1560071488 "ADBIS.aux" "ADBIS.bbl" "ADBIS" 1560073007
   "./splncs04.bst" 1559056294 33695 28665749a115a456b34a9d485a808ee2 ""
-  "ADBIS.aux" 1559930892 6300 6279b4400f4f9b0aa06176da4dbc5ac6 ""
+  "ADBIS.aux" 1560072869 6341 723c817094633502ae8c0c8639121d3e ""
   "ADBIS.bcf" 0 -1 0 ""
-  "bibliography.bib" 1559055954 6772 fc786be14f890d5d705e3cef6b12dede ""
+  "bibliography.bib" 1560070831 7140 6849fa114c63a8e3a811d19182052e57 ""
   (generated)
   "ADBIS.blg"
   "ADBIS.bbl"
-["pdflatex"] 1559930891 "ADBIS.tex" "ADBIS.pdf" "ADBIS" 1559930892
+["pdflatex"] 1560072869 "ADBIS.tex" "ADBIS.pdf" "ADBIS" 1560073007
   "./05_schema/context1.pdf" 1553856309 21686 4a18cce0061b818fb091ebb08cd14da6 ""
   "./05_schema/dataset.pdf" 1517588937 32425 1b5468d2e2d738d44c20fbf24b48004f ""
   "./05_schema/eval_internal.pdf" 1558956513 53049 07f29eab9181ca114fdaa4e3889b3085 ""
-  "./05_schema/intro2.pdf" 1530032099 242285 a9db4e382c2a931b33c7d1226fc9a09a ""
+  "./05_schema/intro2.pdf" 1560071435 240421 e0d08d169163fad1824f3ae937225c61 ""
   "./05_schema/intuition2.pdf" 1530091364 28654 7db7cfb12b5ea4ab2ae3e36a352fd6f9 ""
   "./05_schema/process.pdf" 1530088482 13905 477cf383ef4294d1a1fb3c194e9eec7b ""
   "./05_schema/results_len.pdf" 1558954373 28494 23968d6d274838b49ff4b07bd71ab235 ""
@@ -116,18 +116,18 @@
   "05_schema/context1.pdf" 1553856309 21686 4a18cce0061b818fb091ebb08cd14da6 ""
   "05_schema/dataset.pdf" 1517588937 32425 1b5468d2e2d738d44c20fbf24b48004f ""
   "05_schema/eval_internal.pdf" 1558956513 53049 07f29eab9181ca114fdaa4e3889b3085 ""
-  "05_schema/intro2.pdf" 1530032099 242285 a9db4e382c2a931b33c7d1226fc9a09a ""
+  "05_schema/intro2.pdf" 1560071435 240421 e0d08d169163fad1824f3ae937225c61 ""
   "05_schema/intuition2.pdf" 1530091364 28654 7db7cfb12b5ea4ab2ae3e36a352fd6f9 ""
   "05_schema/process.pdf" 1530088482 13905 477cf383ef4294d1a1fb3c194e9eec7b ""
   "05_schema/results_len.pdf" 1558954373 28494 23968d6d274838b49ff4b07bd71ab235 ""
   "05_schema/results_real_dataset.pdf" 1559052114 38493 8577a0afa376edd64eff378c61079bb5 ""
   "05_schema/settings2.pdf" 1558957228 29322 0cecda012b5e19d93cdb4aa4da9c4160 ""
   "05_schema/time.pdf" 1559051287 22004 793bd4fe342b139d6f48b5f614474041 ""
-  "ADBIS.aux" 1559930892 6300 6279b4400f4f9b0aa06176da4dbc5ac6 ""
-  "ADBIS.bbl" 1559930891 3930 ced326294d55313c34fdf2f6b8143ce2 "bibtex ADBIS"
-  "ADBIS.tex" 1559930891 36978 f6c2975677790b3c85cf8c563092752a ""
+  "ADBIS.aux" 1560072869 6341 723c817094633502ae8c0c8639121d3e ""
+  "ADBIS.bbl" 1560071488 4075 bb31292fce99169379c767274a6777ca "bibtex ADBIS"
+  "ADBIS.tex" 1560073004 37298 5ed1ece12eb82da544ac8f219bbb5994 ""
   "llncs.cls" 1521108100 43467 a21466011e5ed5d4c3f1d5a9af897395 ""
   (generated)
   "ADBIS.log"
-  "ADBIS.aux"
   "ADBIS.pdf"
+  "ADBIS.aux"

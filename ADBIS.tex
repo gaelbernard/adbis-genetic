@@ -48,11 +48,11 @@ With the advent of new technologies and the increase in customers' expectations,
 
 
 \section{Introduction}
-A customer experience can be defined as a customer's journey with an organization over time across multiple interactions called touchpoints \cite{lemon2016understanding}. Recent studies show that customer interactions are increasing \cite{how_to_improve}, services are becoming more complex, and customers are often unpredictable \cite{key_factors_in}. In this context, understanding the main trajectories that were followed by customers to consume a service is a complex task. According to Verhoef et al., a strategy based on customer experience may provide a superior competitive advantage \cite{lemon2016understanding}. It is, therefore, not surprising that ``Characterizing the Customer Journey along the Purchase Funnel and Strategies to Influence the Journey'' has been ranked as one of the most important research priorities for the coming years by the Marketing Science Institute  \cite{MSI2016}. A challenge faced by many practitioners is that of understanding the large number of combinations of activities that may exist when consuming a service. As a result, new methods employed to design, analyze, and understand customer journeys are emerging from the industry and are becoming popular among researchers. One of these conceptual methods that will be the focus of this work, is called the Customer Journey Map (CJM). By showing typical journeys experienced by customers across several touchpoints, a CJM helps to better understand customers' trajectories \cite{bernard2017cjm}. 
+A customer experience can be defined as a customer's journey with an organization over time across multiple interactions called touchpoints \cite{lemon2016understanding}. Recent studies show that customer interactions are increasing \cite{how_to_improve}, services are becoming more complex, and customers are often unpredictable \cite{key_factors_in}. In this context, understanding the main trajectories that were followed by customers to consume a service is a complex task. According to Verhoef et al., a strategy based on customer experience may provide a superior competitive advantage \cite{lemon2016understanding}. It is, therefore, not surprising that ``Characterizing the Customer Journey along the Purchase Funnel and Strategies to Influence the Journey'' has been ranked as one of the most important research priorities for the coming years by the Marketing Science Institute  \cite{MSI2018}. A challenge faced by many practitioners is that of understanding the large number of combinations of activities that may exist when consuming a service. As a result, new methods employed to design, analyze, and understand customer journeys are emerging from the industry and are becoming popular among researchers. One of these conceptual methods that will be the focus of this work, is called the Customer Journey Map (CJM). By showing typical journeys experienced by customers across several touchpoints, a CJM helps to better understand customers' trajectories \cite{bernard2017cjm}. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{05_schema/intro2.pdf}
+\includegraphics[width=0.6\columnwidth]{05_schema/intro2.pdf}
 \caption{\ding{202} Less than 0.01\% of the entire dataset on a CJM, and \ding{203}, a  summary of the dataset using 3 representatives.}
 \label{representativejourney}
 \end{figure}
@@ -67,7 +67,7 @@ Fig.~\ref{representativejourney} shows CJMs derived from a real dataset\footnote
 \label{context1}
 \end{figure}
 
-The existing solutions to summarize collections of journeys \cite{gabadinho2009summarizing,bernard2019genetic} consider only the sequence of touchpoints when measuring the distance between journeys. Fig.~\ref{context1} illustrates the process with 3 short journeys. Using a basic distance measure between sequences (e.g., edit-distance), we cannot say which one of `Journey 1' or `Journey 3' is closer to `Journey 2' (left-part of Fig.~\ref{context1}). We suggest that demographics and other contextual information might be equally important to measure the distance between journeys. Hence, in this paper, we propose to integrate such information when mining journeys. The right-part of Fig.~\ref{context1} shows that when we also consider the age group, it becomes clearer that the closest journey to `Journey 2' is `Journey 1'.
+The existing solutions to summarize collections of journeys \cite{gabadinho2009summarizing,bernard2019genetic} consider only the sequence of touchpoints when measuring the distance between journeys. Fig.~\ref{context1} illustrates the process with 3 short journeys. Using a basic distance measure between sequences (e.g., edit-distance), we cannot say which one of `Journey 1' or `Journey 3' is closer to `Journey 2' (upper part of Fig.~\ref{context1}). We suggest that demographics and other contextual information might be equally important to measure the distance between journeys. Hence, in this paper, we propose to integrate such information when mining journeys. The bottom part of Fig.~\ref{context1} shows that when we also consider the age group, it becomes clearer that the closest journey to `Journey 2' is `Journey 1'.
 
 {\it We propose an algorithm summarizing a customer experience using both the sequence of activities as well as the contextual information.} Our genetic approach uses only three intuitive parameters: 1) the approximate number of representative journeys to use, 2) the weight of the sequence of activities, and 3) the weight of the contextual data. In the evaluation section, we demonstrate that we outperform existing techniques. Finally, we highlight the impact of the three parameters using a real dataset and illustrate the results with CJMs. 
 
@@ -81,7 +81,7 @@ The goal of a customer journey discovery algorithm is to find a reasonable amoun
 
 \textbf{Definition 2} (Actual Journey): An actual journey $J_a$ is a sequence of touchpoints observed from customers. To improve readability, we refer to touchpoints using alphabetical characters (e.g., $J$ becomes $\langle$ABC$\rangle$). The order in which the activities are executed is represented by the x-axis of the CJMs visible in Fig. \ref{representativejourney}.
 
-\textbf{Definition 3} (Representative Journey): A representative journey, $J_{r}$, is a journey that summarizes a subset of actual journeys. In Fig. \ref{representativejourney}, \ding{202}, shows how a CJM would look like when we display actual journeys, while the right-part uses representative journeys. Clearly, as can be seen in Fig. \ref{representativejourney}, the use of  representative journeys increases the readability of the CJM. 
+\textbf{Definition 3} (Representative Journey): A representative journey, $J_{r}$, is a journey that summarizes a subset of actual journeys. In Fig. \ref{representativejourney}, \ding{202}, shows how a CJM would look like when we display actual journeys, while the bottom part, \ding{203}, uses representative journeys. Clearly, as can be seen in Fig. \ref{representativejourney}, the use of representative journeys increases the readability of the CJM. 
 
 \textbf{Definition 4} (Event Logs): An event log is denoted by $J_{\mathcal{A}}$, which is the list of all journeys observed by customers. 
 
@@ -158,7 +158,7 @@ where
  $${x_0}$$  &  x value of the midpoint \\
 \end{conditions*} 
 
-We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The intuition behind this parameter is the following: if we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are other evaluation criteria.
+We set the value of the midpoint, $x_{0}$, to 5 for all our experiments. The intuition behind this parameter is the following: if we have 11 representative journeys on a CJM and the ideal number of journeys is 6, we would have a quality of 0.5 (midpoint) because the absolute distance between 11 and 6 is 5. Often, the final output will have a number of representative journeys that differs from  ${k_{h}}$. This is due to the fact that there are other evaluation criteria.
 
 \label{contextual-distance}
 \subsubsection{Contextual Distance.} The contextual distance allows us to consider the set of contextual data $C$ when grouping similar journeys. The more distant the set of contextual data is between $J_a$ that are represented by distinct $J_r$, the better the quality is. To measure the distance, we first build a value frequency table which counts all the values per representative (${v_i}$ is the value frequency counter for $J_{r_i})$. Then, for each pair of clusters, we calculate the cosine similarity, which is defined as:
@@ -177,7 +177,7 @@ Once we assess the quality of generated CJMs, we assess the stopping criterion. 
 \subsection{Genetic Operations}
 Before transforming the CJMs, we evaluate and rank them by average quality. We copy a fraction (i.e., $e$) of the best CJMs in a set named {$elite$}. In Fig.~\ref{fig:intuition2}, the elite size is 1. In our experiments, we set the elite size to 5. 
 
-By keeping the best CJMs as-is, we ensure that the quality will increase or stay unchanged. We also generate $p-e$ new CJMs using the following operators. {\it (1) Addition of a random journey (mutation):} A sequence from $Top_n$ is added to $J_{\mathcal{R}}$. {\it (2) Addition of an existing journey (crossover):} A journey from the elite population is added to $J_{\mathcal{R}}$. {\it (3) Deletion of a journey (mutation):} A journey is removed from $J_{\mathcal{R}}$. Nothing happens if $J_{\mathcal{R}}$ contains only one journey. {\it (4) Addition of a touchpoint (mutation):} A touchpoint is inserted in one of the existing journeys. {\it (5) Deletion of a touchpoint (mutation):} A touchpoint is removed from $J_{\mathcal{R}}$. 
+By keeping the best CJMs as-is, we ensure that the quality will increase or stay unchanged. We also generate $p-e$ new CJMs using the following operators. (1) Addition of a random journey (mutation): A sequence from $Top_n$ is added to $J_{\mathcal{R}}$. (2) Addition of an existing journey (crossover): A journey from the elite population is added to $J_{\mathcal{R}}$. (3) Deletion of a journey (mutation): A journey is removed from $J_{\mathcal{R}}$. Nothing happens if $J_{\mathcal{R}}$ contains only one journey. (4) Addition of a touchpoint (mutation): A touchpoint is inserted in one of the existing journeys. (5) Deletion of a touchpoint (mutation): A touchpoint is removed from $J_{\mathcal{R}}$. 
 
 We loop over each of these 5 types of transformations three times. Each time, the probability of applying the transformation is 10\%, which means that more than one transformation is applied. It also means that the same transformation might be applied up to three times (with a probability of 0.1\%). At the very least, one transformation has to be applied. If it is not the case, we loop over each transformation three times again until at least a transformation is performed.
 
@@ -189,10 +189,10 @@ In order to evaluate the quality of our approach to return the best set of repre
 \subsection{Datasets}
 
 
-\begin{wrapfigure}{l}{0.45\textwidth}
+\begin{wrapfigure}{l}{0.55\textwidth}
   \begin{center}
     \raisebox{0pt}[\dimexpr\height-3\baselineskip\relax]{\
-\includegraphics[width=0.42\columnwidth]{05_schema/dataset.pdf}
+\includegraphics[width=0.53\columnwidth]{05_schema/dataset.pdf}
     }
   \end{center}
   \vspace{-5pt}
@@ -269,7 +269,7 @@ Fig.~\ref{fig:results} shows the external evaluation metrics. It can be seen tha
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{05_schema/results_len.pdf}
+\includegraphics[width=0.9\columnwidth]{05_schema/results_len.pdf}
   \caption{External evaluation. The genetic algorithm that uses the contextual information (i.e., $Genetic_2$) performs best.}
   \label{fig:results}
 \end{figure}
@@ -289,7 +289,7 @@ The internal evaluation of Fig.~\ref{fig:eval_internal} shows that not only does
 \begin{figure}[H]
   \begin{center}
     
-	\includegraphics[width=0.42\columnwidth]{05_schema/time.pdf}
+	\includegraphics[width=0.6\columnwidth]{05_schema/time.pdf}
     
   \end{center}
   \caption{Execution time for 100, 1'000, and 10'000 journeys.}
